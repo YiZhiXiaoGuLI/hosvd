@@ -1,0 +1,6 @@
+for(int i = 0; i < workerNum.length; i++) {
+                ActorRef actor = getContext().actorOf(Props.create(
+                        OrderWorker.class,i,machines,ip,roundrobin),
+                        "OrderWorker" + i);
+                actor.tell(new OrderMessage(workerNum,Count), getSelf());
+            }
